@@ -5,7 +5,6 @@ from tasks import LinearRegression
 import numpy as np
 
 
-
 def get_inference_noise_std(noise_levels, task_sampler, xs, model):
     ys_result = []
     pred_result = []
@@ -24,12 +23,12 @@ def get_inference_noise_std(noise_levels, task_sampler, xs, model):
 
 
 
-def get_inference_scale(noise_name,x_scales, task_sampler, xs, model, noise_std=1):
+def get_inference_scale(x_scales, task_sampler, xs, model, noise_std=1):
     ys_result = []
     pred_result = []
     loss_result = []
     for x_scale in x_scales:
-        xs_scaled = xs * x_scale
+        xs_scaled = x_scale * xs 
         task = task_sampler(noise_std=noise_std)
         ys = task.evaluate(xs_scaled)
         with torch.no_grad():
@@ -42,6 +41,28 @@ def get_inference_scale(noise_name,x_scales, task_sampler, xs, model, noise_std=
     return ys_result, pred_result, loss_result
 
 
+def get_inference_baselines(baselines, task_sampler, xs, ICLmodel, noise_std=1):
+    pred_result = []
+    loss_result = []
+    task = task_sampler(noise_std=noise_std)
+    ys = task.evaluate(xs)
+    ### ICL model
+    with torch.no_grad():
+        pred = ICLmodel(xs, ys)
+    metric = task.get_metric()
+    loss = metric(pred, ys).numpy()
+    pred_result.append(pred)
+    loss_result.append(loss) 
+    ### baselines
+    for baseline in baselines:
+        with torch.no_grad():
+            pred = baseline(xs, ys)
+        metric = task.get_metric()
+        loss = metric(pred, ys).numpy()
+        pred_result.append(pred)
+        loss_result.append(loss)   
+    return pred_result, loss_result  
+
 
 def visualize_inference_noise_std(baseline, noise_levels, loss_result, noise_name):
     for i in range(len(noise_levels)):
@@ -49,7 +70,7 @@ def visualize_inference_noise_std(baseline, noise_levels, loss_result, noise_nam
         loss = loss_result[i]
         plt.plot(loss.mean(axis=0), lw=1, label="Transformer(noise_std = {})".format(noise_level))
     plt.axhline(baseline, ls="--", color="gray", label="zero estimator")
-    plt.xlabel("# in-context examples({})".format(noise_name))
+    plt.xlabel("# in-context examples({} noise)".format(noise_name))
     plt.ylabel("squared error")
     plt.legend()
     plt.show()
@@ -64,6 +85,20 @@ def visualize_inference_scale(baseline, x_scales, loss_result, noise_name):
     plt.axhline(baseline, ls="--", color="gray", label="zero estimator")
     plt.xlabel("# in-context examples({} noise)".format(noise_name))
     plt.ylabel("squared error")
+    plt.legend()
+    plt.show()
+
+
+
+def visualize_inference_baselines(baselines, baseline, loss_result, noise_name):
+    for i in range(len(baselines)):
+        name = baselines[i]
+        loss = loss_result[i]
+        plt.plot(loss.mean(axis=0), lw=1, label="{}".format(name))
+    plt.axhline(baseline, ls="--", color="gray", label="zero estimator")
+    plt.xlabel("# in-context examples({} noise)".format(noise_name))
+    plt.yscale('log')
+    plt.ylabel("log squared error")
     plt.legend()
     plt.show()
 
