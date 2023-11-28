@@ -1,13 +1,16 @@
-# On the Robustness of In-Context Learning with \\Noisy Labels: Train, Inference, and Beyond
+# On the Robustness of In-Context Learning with Noisy Labels: Train, Inference, and Beyond
 
-This is the repository for our paper **On the Robustness of In-Context Learning with \\Noisy Labels: Train, Inference, and Beyond**, 
+This is the repository for our paper **On the Robustness of In-Context Learning with Noisy Labels: Train, Inference, and Beyond**, 
 
 with Cheng Chen, Haodong Wen, Xinzhi Yu, Zeming Wei.
 
 Paper link: TBD
 
 ## Train transformers with noisy labels (Section 4)
-
+To train a transformer with demonstrations of $\sigma$=``std``, use
+``
+python train.py --config conf/NL_train_{std}.yaml
+``
 
 ## In-context inference with noisy labels (Section 5)
 
