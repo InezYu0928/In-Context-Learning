@@ -1,44 +1,24 @@
-This repository contains the code and models for our paper:
+# On the Robustness of In-Context Learning with \\Noisy Labels: Train, Inference, and Beyond
 
-**What Can Transformers Learn In-Context? A Case Study of Simple Function Classes** <br>
-*Shivam Garg\*, Dimitris Tsipras\*, Percy Liang, Gregory Valiant* <br>
-Paper: http://arxiv.org/abs/2208.01066 <br><br>
+This is the repository for our paper **On the Robustness of In-Context Learning with \\Noisy Labels: Train, Inference, and Beyond**, 
 
-![](setting.jpg)
+with Cheng Chen, Haodong Wen, Xinzhi Yu, Zeming Wei.
 
-```bibtex
-    @InProceedings{garg2022what,
-        title={What Can Transformers Learn In-Context? A Case Study of Simple Function Classes},
-        author={Shivam Garg and Dimitris Tsipras and Percy Liang and Gregory Valiant},
-        year={2022},
-        booktitle={arXiv preprint}
-    }
-```
+Paper link: TBD
 
-## Getting started
-You can start by cloning our repository and following the steps below.
+## Train transformers with noisy labels (Section 4)
 
-1. Install the dependencies for our code using Conda. You may need to adjust the environment YAML file depending on your setup.
 
-    ```
-    conda env create -f environment.yml
-    conda activate in-context-learning
-    ```
+## In-context inference with noisy labels (Section 5)
 
-2. Download [model checkpoints](https://github.com/dtsip/in-context-learning/releases/download/initial/models.zip) and extract them in the current directory.
+[model checkpoints](https://github.com/dtsip/in-context-learning/releases/download/initial/models.zip) and extract them in the current directory.
 
-    ```
-    wget https://github.com/dtsip/in-context-learning/releases/download/initial/models.zip
-    unzip models.zip
-    ```
 
-3. [Optional] If you plan to train, populate `conf/wandb.yaml` with you wandb info.
+## Noisy inference with Noisy training (Section 6)
 
-That's it! You can now explore our pre-trained models or train your own. The key entry points
-are as follows (starting from `src`):
-- The `eval.ipynb` notebook contains code to load our own pre-trained models, plot the pre-computed metrics, and evaluate them on new data.
-- `train.py` takes as argument a configuration yaml from `conf` and trains the corresponding model. You can try `python train.py --config conf/toy.yaml` for a quick training run.
+## Extrapolating beyond *i.i.d.* noises (Section 7)
 
-# Maintainers
-* [Shivam Garg](https://cs.stanford.edu/~shivamg/)
-* [Dimitris Tsipras](https://dtsipras.com/)
+
+## Acknowledgement
+
+This repository is forked from [this link](https://github.com/dtsip/in-context-learning).
