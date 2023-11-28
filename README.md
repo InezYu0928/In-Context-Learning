@@ -17,7 +17,7 @@ The trained model checkpoints are available at [this file](https://drive.google.
 
 ## In-context inference with noisy labels (Section 5)
 
-[pretrained model](https://github.com/dtsip/in-context-learning/releases/download/initial/models.zip)
+To explore how different noise levels and types influences the [pretrained ICL model](https://github.com/dtsip/in-context-learning/releases/download/initial/models.zip)'s performance in inference stage, you can manipulate `eval_inference.ipynb` to load the models, adjust the noise, plot their accuracy performance, and evaluate them on new data.
 
 
 ## Noisy inference with Noisy training (Section 6)
