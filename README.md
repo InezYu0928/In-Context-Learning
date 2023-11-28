@@ -22,7 +22,7 @@ To explore how different noise levels and types influences the [pretrained ICL m
 
 ## Noisy inference with Noisy training (Section 6)
 To test the performance of inference under defferent noise levels, first download all trained models [here](https://drive.google.com/drive/folders/1-Z2-lJMQ8QjQIVaV0eJdDPlQtBxUpRec?usp=drive_link) into /src/models.
-Then you can run "eval_inference_noise.ipynb" to see the results.
+Then you can run `eval_inference_noise.ipynb` to see the results.
 
 ## Extrapolating beyond *i.i.d.* noises (Section 7)
 
