@@ -8,9 +8,12 @@ Paper link: TBD
 
 ## Train transformers with noisy labels (Section 4)
 To train a transformer with demonstrations of $\sigma$=``std``, use
-``
+```
 python train.py --config conf/NL_train_{std}.yaml
-``
+```
+Note that you should modify the ``wandb`` configurations in the corresponding config file.
+
+The trained model checkpoints are available at https://drive.google.com/drive/folders/1-Z2-lJMQ8QjQIVaV0eJdDPlQtBxUpRec?usp=drive_link.
 
 ## In-context inference with noisy labels (Section 5)
 
