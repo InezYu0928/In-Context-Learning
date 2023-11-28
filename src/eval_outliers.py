@@ -224,42 +224,6 @@ def build_evals(conf):
             evaluation_kwargs[name].update(kwargs)
         return evaluation_kwargs
 
-    # for strategy in [
-    #     "random_quadrants",
-    #     "orthogonal_train_test",
-    #     "overlapping_train_test",
-    # ]:
-    #     evaluation_kwargs[strategy] = {"prompting_strategy": strategy}
-
-    # for method in ["half_subspace", "skewed"]:
-    #     if "subspace" in method:
-    #         eigenvals = torch.zeros(n_dims)
-    #         eigenvals[: n_dims // 2] = 1
-    #     else:
-    #         eigenvals = 1 / (torch.arange(n_dims) + 1)
-
-    #     scale = sample_transformation(eigenvals, normalize=True)
-    #     evaluation_kwargs[f"{method}"] = {
-    #         "data_sampler_kwargs": {"scale": scale},
-    #     }
-
-    # for dim in ["x", "y"]:
-    #     for scale in [0.333, 0.5, 2, 3]:
-    #         if dim == "x":
-    #             eigenvals = scale * torch.ones(n_dims)
-    #             t = sample_transformation(eigenvals)
-    #             scaling_args = {"data_sampler_kwargs": {"scale": t}}
-    #         else:
-    #             eigenvals = scale * torch.ones(n_dims)
-    #             scaling_args = {"task_sampler_kwargs": {"scale": scale}}
-
-    #         evaluation_kwargs[f"scale-{dim}={scale}"] = scaling_args
-
-    # evaluation_kwargs[f"noisyLR"] = {
-    #     "task_sampler_kwargs": {"renormalize_ys": True, "noise_std": 1},
-    #     "task_name": "noisy_linear_regression",
-    # }
-
     for num_outliers in [0, 1, 2, 4, 8,16]:
         for noise_std in [0.01, 0.1, 1, 10, 100]:
             outlier_kwargs = {
@@ -409,8 +373,7 @@ def read_run_dir(run_dir):
     return df
 
 if __name__ == "__main__":
-    #run_dir = sys.argv[1]
-    run_dir='E:/课程/大四上/deep learning/proj/in-context-learning/models'
+    run_dir = sys.argv[1]
     for task in os.listdir(run_dir):
         task_dir = os.path.join(run_dir, task)
         print(f"Evaluating task {task}")
