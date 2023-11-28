@@ -1,7 +1,7 @@
 import os
 from random import randint
 import uuid
-
+import pandas as pd
 from quinine import QuinineArgumentParser
 from tqdm import tqdm
 import torch
@@ -62,7 +62,7 @@ def train(model, args):
     pbar = tqdm(range(starting_step, args.training.train_steps))
 
     num_training_examples = args.training.num_training_examples
-
+    losses = []
     for i in pbar:
         data_sampler_args = {}
         task_sampler_args = {}
@@ -113,7 +113,7 @@ def train(model, args):
                 },
                 step=i,
             )
-
+        losses.append(loss)
         curriculum.update()
 
         pbar.set_description(f"loss {loss}")
@@ -132,6 +132,8 @@ def train(model, args):
             and i > 0
         ):
             torch.save(model.state_dict(), os.path.join(args.out_dir, f"model_{i}.pt"))
+    losses = pd.Series(losses)
+    losses.to_csv(os.path.join(args.out_dir, f"curve.csv"))
 
 
 def main(args):
