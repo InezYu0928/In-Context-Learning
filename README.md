@@ -17,7 +17,7 @@ The trained model checkpoints are available at https://drive.google.com/drive/fo
 
 ## In-context inference with noisy labels (Section 5)
 
-[model checkpoints](https://github.com/dtsip/in-context-learning/releases/download/initial/models.zip) and extract them in the current directory.
+[pretrained model](https://github.com/dtsip/in-context-learning/releases/download/initial/models.zip)
 
 
 ## Noisy inference with Noisy training (Section 6)
