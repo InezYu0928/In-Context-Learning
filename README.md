@@ -26,7 +26,9 @@ Then you can run `eval_inference_noise.ipynb` to see the results.
 
 ## Extrapolating beyond *i.i.d.* noises (Section 7)
 To test the performance of inference with outliers in prompts, first download all trained models [here](https://drive.google.com/drive/folders/1-Z2-lJMQ8QjQIVaV0eJdDPlQtBxUpRec?usp=drive_link) into /src/models. Run 
-```python eval_outliers.py``` 
+```
+python eval_outliers.py
+``` 
 to generate metrics then run `eval_outliers.ipynb` to draw the plots with computed metrics.
 
 ## Acknowledgement
