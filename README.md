@@ -2,7 +2,7 @@
 
 ## ICLR 2024 Workshop on Reliable and Responsible Foundation Models
 
-Cheng Chen*, Xinzhi Yu*, Haodong Wen*, Jingsong Sun, Guanzhang Yue, Yihao Zhang, Zeming Wei ${\!}^\dagger$.
+Cheng Chen*, Xinzhi Yu*, Haodong Wen*, Jingsong Sun, Guanzhang Yue, Yihao Zhang, $\text{Zeming Wei}^\dagger$.
 
 Paper link: [arxiv](https://arxiv.org/abs/2404.18191)
 
